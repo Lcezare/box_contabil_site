@@ -1,0 +1,3 @@
+# Acessar Mysql pelo terminal
+
+mysql -h localhost -u root -p
