@@ -1,3 +1,10 @@
+Instalar MySQL server comunity
+Linkar MySQL no CMD do Windows.
+- Pegar link da pasta BIN 'C:\Program Files\MySQL\MySQL Server 8.0\bin'.
+Abrir 'Configurações avançadas do sistema' e 'Variáveis de Ambiente' e registre um Path com o caminho da pasta
+- Testar se instalou certinho (). Digitar no CMD 'mysql'
+
+
 # Acessar Mysql pelo terminal
 
 mysql -h localhost -u root -p
