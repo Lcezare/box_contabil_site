@@ -1,3 +1,12 @@
+# Selecionar banco de dados
+USE nome_do_banco
+
+# Mostrar tabelas
+show tables;
+
+# Mostrar dados de uma tabelas
+SELECT * FROM nome_da_tabela
+
 # Atualizar registro
 UPDATE usuarios SET nome = "Nome de Teste" WHERE nome = "Luis Silva";
 
@@ -17,5 +26,7 @@ INSERT INTO usuarios(nome, email, idade) VALUES(
     33    
 );
 
-# Acessar banco de dados pelo terminal
-mysql -u root -p usuarios < database_name. sql
+# Criar novo Banco de dados
+CREATE DATABASE nome_do_banco;
+
+

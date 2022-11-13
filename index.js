@@ -1,14 +1,39 @@
 const express = require("express");
 const app = express();
+const handlebars = require('express-handlebars')
+const BodyParser =require('body-parser')
+const Post = require('./models/Post');
+
+// Config
+    // Template Engine
+    app.engine('handlebars', handlebars.engine({defaltLayout: 'main'}))
+    app.set('view engine', 'handlebars')
+    // Body-Parser
+    app.use(body-Parser.unlencoded({extended: false}))
+    app.use(body-Parser.json())
 
 
-app.get("/", function(req, res) {
-    res.sendFile(__dirname + "/index.html")
-})
+// Rotas
 
-app.get("/ola", function(req, res) {
-    res.send("Ola")
-})
+    app.get('/cad', function(req, res){
+        res.render('formulario')
+    })
+
+    app.post('/add', function(req, res){
+        Post.create({
+            titulo: req.body.titulo,
+            conteudo: req.body.conteudo
+        }).then(function() {
+            res.send('Post criado com sucesso')
+        }).catch(function(erro){
+            res.send('Houve um erro' + erro)
+        })
+    })
 
 
-app.listen(8081);
+
+
+
+app.listen(8081, function(){
+    console.log('Servidor rodando! ')
+});
