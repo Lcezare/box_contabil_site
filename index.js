@@ -1,7 +1,7 @@
-const express = require("express");
+const express = require('express');
 const app = express();
 const handlebars = require('express-handlebars')
-const BodyParser =require('body-parser')
+const bodyParser = require('body-parser')
 const Post = require('./models/Post');
 
 // Config
@@ -9,11 +9,18 @@ const Post = require('./models/Post');
     app.engine('handlebars', handlebars.engine({defaltLayout: 'main'}))
     app.set('view engine', 'handlebars')
     // Body-Parser
-    app.use(body-Parser.unlencoded({extended: false}))
-    app.use(body-Parser.json())
+    app.use(bodyParser.urlencoded({extended: false}))
+    app.use(bodyParser.json())
 
 
 // Rotas
+
+    app.get('/', function(req, res){
+        Post.findAll({order: [['id', 'DESC']]}).then(function(posts){
+            res.render('home', {posts: posts.map(post => post.toJSON())
+                });
+            });
+        });
 
     app.get('/cad', function(req, res){
         res.render('formulario')
@@ -24,13 +31,20 @@ const Post = require('./models/Post');
             titulo: req.body.titulo,
             conteudo: req.body.conteudo
         }).then(function() {
-            res.send('Post criado com sucesso')
+            // res.send('Post criado com sucesso')
+            res.redirect('/')
         }).catch(function(erro){
             res.send('Houve um erro' + erro)
         })
     })
 
-
+    app.get('/deletar/:id', function(req, res){
+        Post.destroy({where: {'id': req.params.id}}).then(function(){
+            res.send("Postagem deletada com sucesso!")
+        }).catch(function(erro){
+            res.send("Esta postagem não existe!")
+        })
+    })
 
 
 
