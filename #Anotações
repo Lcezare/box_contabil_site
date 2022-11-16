@@ -1,3 +1,14 @@
+# Instalar dependencias
+npm install --save express
+npm install --save express-handlebars
+npm install --save body-parser
+npm install --save mongoose
+
+
+
+
+
+
 Instalar MySQL server comunity
 Linkar MySQL no CMD do Windows.
 - Pegar link da pasta BIN 'C:\Program Files\MySQL\MySQL Server 8.0\bin'.
@@ -8,3 +19,18 @@ Abrir 'Configurações avançadas do sistema' e 'Variáveis de Ambiente' e regis
 # Acessar Mysql pelo terminal
 
 mysql -h localhost -u root -p
+
+=-=-=-=-=-=-=-= MongoDB e Mongoose =-=-=-=-=-=-=-
+
+> show databases;
+admin       0.000GB
+aprendendo  0.000GB
+config      0.000GB
+local       0.000GB
+> use aprendendo;
+switched to db aprendendo
+> show collections;
+usuarios
+> db.usuarios.find()
+{ "_id" : ObjectId("6374eb0bda172f025d445516"), "nome" : "Victor", "sobrenome" : "Lima", "email" : "victor@mail.com", "idade" : 19, "pais" : "Brasil", "__v" : 0 }
+>
